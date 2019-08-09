@@ -1,2 +1,0 @@
-# PokemonPicross
-pokemon picross
