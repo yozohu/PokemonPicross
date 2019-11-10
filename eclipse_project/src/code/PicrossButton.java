@@ -21,13 +21,17 @@ public class PicrossButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e){
-				/*
-				 * HERE GOES CODE RUN WHEN THIS BUTTON IS CLICKED
-				 * BUTTON STATE SHOULD CHANGE
-				 * THIS IS THE STATE TRANSITION THAT SHOULD HAPPEN
-				 *  blank --> filled --> marked --> blank
-				 */
-				
+				switch(state) {
+					case BLANK:
+						state = SquareState.FILLED;
+						break;
+					case FILLED:
+						state = SquareState.MARKED;
+						break;
+					case MARKED:
+						state = SquareState.BLANK;
+						break;
+				}
 				setIcon(state);
 			}
 		});
@@ -41,6 +45,10 @@ public class PicrossButton extends JButton {
 	//resource manager helper methods
 	private void setIcon(SquareState s) {
 		setIcon(ResourceManager.instance().getSquareIcon(state));
+	}
+
+	public SquareState state() {
+		return state;
 	}
 
 }

@@ -3,7 +3,7 @@ package code;
 public class BoardModel {
 
 	private boolean[][] solution; //2D array repping which squares are filled (true) in the final solution
-	int numSquaresLeft; //number of uncovered squares left in solution
+	int squaresRight; //number of squares in the right state
 	int rows;
 	int cols;
 
@@ -19,25 +19,33 @@ public class BoardModel {
 		this.solution = solution;
 		rows = solution.length;
 		cols = solution[0].length;
-		
-		//SET NUMBER OF SQUARES LEFT......SHOULDNT B ZERO
-		numSquaresLeft = 0;
+
+		squaresRight = 0;
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j< cols; j++) {
+				if(!solution[i][j]) {squaresRight++;}
+			}
+		}
 	}
 	
-	public void decSquaresLeft(){
-		numSquaresLeft--;
+	public void decNumOfCorrectSquares(){
+		squaresRight--;
 	}
 
-	public void incSquaresLeft(){
-		numSquaresLeft++;
+	public void incNumOfCorrectSquares(){
+		squaresRight++;
 	}
 
 	public boolean solutionFound(){
-		return (numSquaresLeft == 0);
+		return (squaresRight == rows*cols);
 	}
 
 	public boolean inSolution(int row, int col) {
 		return solution[row][col];
+	}
+
+	public int numOfCorrectSquares() {
+		return squaresRight;
 	}
 
 }

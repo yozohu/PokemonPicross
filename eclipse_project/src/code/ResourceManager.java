@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 public class ResourceManager {
 	
 	private static final int NUM_SQUARE_ICONS = 3;
-	private static final int MAX_GAME_SIZE = 5;
+	static final int MAX_GAME_SIZE = 5;
 	
 	private static ResourceManager rmInstance = null;
 	private ImageIcon[] squareIcons;
@@ -17,9 +17,9 @@ public class ResourceManager {
 		squareIcons[SquareState.FILLED.ordinal()] = new ImageIcon(getClass().getResource("/res/icons/squares/filled.png"));
 		squareIcons[SquareState.MARKED.ordinal()] = new ImageIcon(getClass().getResource("/res/icons/squares/marked.png"));
 			
-		numberIcons = new ImageIcon[MAX_GAME_SIZE];
-		for(int i = 0; i<MAX_GAME_SIZE; i++){
-			numberIcons[i] = new ImageIcon(getClass().getResource("/res/icons/numbers/"+Integer.toString(i+1)+".png"));
+		numberIcons = new ImageIcon[MAX_GAME_SIZE+1];
+		for(int i = 0; i<=MAX_GAME_SIZE; i++){
+			numberIcons[i] = new ImageIcon(getClass().getResource("/res/icons/numbers/"+Integer.toString(i)+".png"));
 		}
 	}
 	
@@ -39,9 +39,9 @@ public class ResourceManager {
 	}
 	
 	public ImageIcon getNumberIcon(int number) {
-		if(number>MAX_GAME_SIZE || number<=0) {
+		if(number>MAX_GAME_SIZE || number<0) {
 			return null;
 		}
-		return numberIcons[number-1];
+		return numberIcons[number];
 	}
 }
