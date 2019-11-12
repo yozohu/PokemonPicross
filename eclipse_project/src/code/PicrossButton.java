@@ -50,5 +50,13 @@ public class PicrossButton extends JButton {
 	public SquareState state() {
 		return state;
 	}
+	
+	public void redraw() {
+		setIcon(state);
+	}
+	
+	public void setState(SquareState s) {
+		state = s;
+	}
 
 }

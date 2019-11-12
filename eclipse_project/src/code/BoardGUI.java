@@ -150,28 +150,35 @@ public class BoardGUI implements ActionListener{
 	public void actionPerformed(ActionEvent a) {
 		PicrossButton b = (PicrossButton)a.getSource();
 		
+		//change to switch case?
+		
 		if(b.state() == SquareState.BLANK) { //about to fill this position
-			if( pboard.inSolution(b.row(), b.col()) ){
-				pboard.incNumOfCorrectSquares();
-			}else {
-				pboard.decNumOfCorrectSquares();
-			}
+			pboard.fill(b.row(), b.col());
 		}
 		
-		if(b.state() == SquareState.FILLED) { //abt 2 unfill this square
-			
-			if( pboard.inSolution(b.row(), b.col()) ){
-				pboard.decNumOfCorrectSquares();
-			}else {
-				pboard.incNumOfCorrectSquares();
-			}
-			
+		if(b.state() == SquareState.FILLED) { //abt 2 mark this square
+			pboard.mark(b.row(), b.col());
 		}
 		
-		if(pboard.solutionFound()) {
-			System.out.println("SOLUTION FOUND");
-		}else {
-			System.out.println(pboard.numOfCorrectSquares());
+		if(b.state() == SquareState.FILLED) { //abt 2 clear this square
+			pboard.clear(b.row(), b.col());
 		}
+		
+	}
+
+	public void showSolution() {
+		// TODO Auto-generated method stub
+		for(int i = 0; i < rows; i++) {
+			for(int j = 0; j<cols; j++) {
+				if(pboard.inSolution(i, j)) {
+					iconBoard[i][j].setState(SquareState.FILLED);
+					pboard.mark(i,j);
+				}else {
+					iconBoard[i][j].setState(SquareState.BLANK);
+				}
+				iconBoard[i][j].redraw();
+			}
+		}
+		pboard.printStatus();
 	}
 }
