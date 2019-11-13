@@ -13,7 +13,7 @@ public class IPHTest {
 		
 //		iph.printPixelData();
 	iph.solutionFromPixelData();
-		iph.descaleSol(5);
+		iph.descaleSol(40);
 //		iph.printSol();
 		
 

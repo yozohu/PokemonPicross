@@ -17,7 +17,7 @@ import java.io.IOException;
  */
 public class ImageProcessingHandler {
 
-	private static final int THRESHOLD = 200; // RGB threshold to determine whetehr a pixel will go black or white
+	private static final int THRESHOLD = 100; // RGB threshold to determine whetehr a pixel will go black or white
 	private String fileName; // name of current image being processed
 	private int pixelData[];
 	private boolean solution[][];
